@@ -1,10 +1,17 @@
 import './App.css';
+import DefaultLayout from './layout/DefaultLayout';
 import Entrypage from './pages/entry/Entrypage';
+
+
 
 function App() {
   return (
     <div className="App">
-      <Entrypage />
+      
+      <DefaultLayout>
+        //Dashboard
+      </DefaultLayout>
+
     </div>
   );
 }
