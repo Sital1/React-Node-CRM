@@ -1,9 +1,11 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import "./header.css"
 
 const Header = () => {
   return (
     <Navbar 
+    className="navbar"
     collapseOnSelect
     bg="dark"
     variant="dark"
