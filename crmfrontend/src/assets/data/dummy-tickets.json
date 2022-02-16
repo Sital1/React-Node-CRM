@@ -1,38 +1,43 @@
 [
-    {
-        "id": 1,
-        "subject":"ssl issue",
-        "status": "Client response pending",
-        "createdAt": "2022-02-15"
-    },
-    {
-        "id": 2,
-        "subject":"email issue",
-        "status": "Client response pending",
-        "createdAt": "2022-02-15"
-    },
-    {
-        "id": 3,
-        "subject":"ssl issue",
-        "status": "Client response pending",
-        "createdAt": "2022-02-15"
-    },
-    {
-        "id": 4,
-        "subject":"ssl issue",
-        "status": "Client response pending",
-        "createdAt": "2022-02-15"
-    },
-    {
-        "id": 5,
-        "subject":"ssl issue",
-        "status": "Client response pending",
-        "createdAt": "2022-02-15"
-    },
-    {
-        "id": 6,
-        "subject":"ssl issue",
-        "status": "Client response pending",
-        "createdAt": "2022-02-15"
-    }
+  {
+    "id": 1,
+    "subject": "ssl issue",
+    "status": "Client response pending",
+    "createdAt": "2022-02-15",
+    "history": [
+      { "date": "22/10/10", "message": "adssad", "messageBy": "client" },
+      { "date": "22/10/10", "message": "operator message", "messageBy": "operator" },
+      { "date": "22/10/10", "message": "i need it", "messageBy": "client" }
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "email issue",
+    "status": "Client response pending",
+    "createdAt": "2022-02-15"
+  },
+  {
+    "id": 3,
+    "subject": "ssl issue",
+    "status": "Client response pending",
+    "createdAt": "2022-02-15"
+  },
+  {
+    "id": 4,
+    "subject": "ssl issue",
+    "status": "Client response pending",
+    "createdAt": "2022-02-15"
+  },
+  {
+    "id": 5,
+    "subject": "ssl issue",
+    "status": "Client response pending",
+    "createdAt": "2022-02-15"
+  },
+  {
+    "id": 6,
+    "subject": "ssl issue",
+    "status": "Client response pending",
+    "createdAt": "2022-02-15"
+  }
 ]
