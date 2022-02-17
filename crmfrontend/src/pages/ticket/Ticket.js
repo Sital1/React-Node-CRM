@@ -4,13 +4,24 @@ import BreadCrumb from "../../components/breadcrumb/Breadcrumb";
 import tickets from "../../assets/data/dummy-tickets.json";
 import MessageHistory from "../../components/message-history/MessageHistory";
 import UpdateTicket from "../../components/update-ticket/UpdateTicket";
+import { useParams } from "react-router-dom";
 
-const ticket = tickets[0];
+
+
 
 const Ticket = () => {
+  const { id } = useParams()
   const [message, setMessage] = useState("");
+  const [ticket, setTicket] = useState("");
 
-  useEffect(() => {}, [message]);
+  useEffect(() => {
+    for(let ticket of tickets){
+      if (ticket.id == id){
+        setTicket(ticket);
+        break;
+      }
+    }
+  }, [message,id]);
 
   const handleOnChnage = (e) => {
     setMessage(e.target.value);
@@ -42,7 +53,7 @@ const Ticket = () => {
       </Row>
 
       <Row className="mt-4">
-        <MessageHistory msg={ticket.history} />
+       <Col>{ticket.history && <MessageHistory msg={ticket.history} />}</Col> 
       </Row>
       <hr className="mt-5"/>
 

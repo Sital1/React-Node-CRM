@@ -4,6 +4,7 @@ import BreadCrumb from "../../components/breadcrumb/Breadcrumb";
 import SearchForm from "../../components/search-form/SearchForm";
 import TicketTable from "../../components/ticket-table/TicketTable";
 import ticket from "../../assets/data/dummy-tickets.json";
+import { Link } from "react-router-dom";
 
 const TicketList = () => {
   const [searchStr, setSearchStr] = useState("");
@@ -38,7 +39,7 @@ const TicketList = () => {
 
       <Row className="mt-4">
         <Col>
-          <Button variant="dark">Add new Ticket</Button>
+         <Link to="/add-ticket"><Button variant="dark">Add new Ticket</Button></Link> 
         </Col>
 
         <Col className="text-end">

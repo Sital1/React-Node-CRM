@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Footer from "./partials/Footer";
 import Header from "./partials/Header";
 
@@ -10,7 +11,7 @@ const DefaultLayout = ({children}) => {
       </header>
 
       <main className="main">
-          {children}
+         <Outlet />
       </main>
 
       <footer className="footer">

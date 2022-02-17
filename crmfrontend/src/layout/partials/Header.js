@@ -1,24 +1,38 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import "./header.css"
+import "./header.css";
+import { useNavigate } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
+
+  const navigate = useNavigate()
+
+  const logout = ()=>{
+    navigate("/")
+  }
+
   return (
-    <Navbar 
-    className="navbar"
-    collapseOnSelect
-    bg="dark"
-    variant="dark"
-    expand="md"
+    <Navbar
+      className="navbar"
+      collapseOnSelect
+      bg="dark"
+      variant="dark"
+      expand="md"
     >
       <Navbar.Brand>logo</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
-            <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-            <Nav.Link href="/tickets">Tickets</Nav.Link>
-            <Nav.Link href="/logout">Logout</Nav.Link>
+          <LinkContainer  to="/dashboard">
+            <Nav.Link>Dashboard</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/tickets">
+            <Nav.Link >Tickets</Nav.Link>
+          </LinkContainer>
+
+          <Nav.Link onClick={logout}>Logout</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
