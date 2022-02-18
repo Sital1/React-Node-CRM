@@ -1,21 +1,32 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, Spinner, Alert } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Spinner,
+  Alert,
+} from "react-bootstrap";
 import PropTypes from "prop-types";
-
 import { loginPending, loginSuccess, loginError } from "./LoginSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogin } from '../../api/userApi';
+import { userLogin } from "../../api/userApi";
 import { useNavigate } from "react-router-dom";
 
+import { getUserProfile } from "../../pages/dashboard/userAction";
 
 const Login = ({ formSwitcher }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const [email, setEmail] = useState("e23@e.com1");
+  const [password, setPassword] = useState("secret222");
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {isLoading, isAuth, error} = useSelector(state => state.login)
+  const { isLoading, isAuth, error } = useSelector((state) => state.login);
 
+  useEffect(() => {
+    (sessionStorage.getItem("accessJWT")) && navigate("/dashboard");
+  }, [navigate, isAuth]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -43,19 +54,19 @@ const Login = ({ formSwitcher }) => {
     dispatch(loginPending());
 
     //  call the api
-    try{
-      const isAuth = await userLogin({email,password})
+    try {
+      const isAuth = await userLogin({ email, password });
       console.log(isAuth);
 
-      if(isAuth.status === "error"){
-        return dispatch(loginError(isAuth.message))
+      if (isAuth.status === "error") {
+        return dispatch(loginError(isAuth.message));
       }
-      dispatch(loginSuccess())
-      navigate("/dashboard")
-    }catch(error){
-      dispatch(loginError(error.message))
+      dispatch(loginSuccess());
+      dispatch(getUserProfile());
+      navigate("/dashboard");
+    } catch (error) {
+      dispatch(loginError(error.message));
     }
-
   };
 
   return (

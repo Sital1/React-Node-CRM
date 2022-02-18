@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet, Navigate } from "react-router-dom";
+import { fetchNewAccessJWT } from "../../api/userApi";
 
-import {Outlet, Navigate} from 'react-router-dom'
-const isAuth = true;
+import { loginSuccess } from "../login/LoginSlice";
 
 const PrivateRoute = () => {
-  return (
-    isAuth ? <Outlet />:<Navigate to="/" />
-  )
-}
+  const { isAuth } = useSelector((state) => state.login);
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const updateAccessJWT = async()=>{
+      const res = await fetchNewAccessJWT();
+      res && dispatch(loginSuccess());
+    }
+    updateAccessJWT();
+    sessionStorage.getItem("accessJWT") && dispatch(loginSuccess());
+  }, [isAuth, dispatch]);
 
-export default PrivateRoute
+  return isAuth ? <Outlet /> : <Navigate to="/" />;
+};
+
+export default PrivateRoute;

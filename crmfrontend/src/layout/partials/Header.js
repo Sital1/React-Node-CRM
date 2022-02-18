@@ -3,14 +3,19 @@ import { Navbar, Nav } from "react-bootstrap";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import { userLogout } from '../../api/userApi'
+
 
 const Header = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const logout = ()=>{
-    navigate("/")
-  }
+  const logout = () => {
+    
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("crmSite");
+    userLogout();
+    navigate("/");
+  };
 
   return (
     <Navbar
@@ -25,11 +30,11 @@ const Header = () => {
 
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
-          <LinkContainer  to="/dashboard">
+          <LinkContainer to="/dashboard">
             <Nav.Link>Dashboard</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/tickets">
-            <Nav.Link >Tickets</Nav.Link>
+            <Nav.Link>Tickets</Nav.Link>
           </LinkContainer>
 
           <Nav.Link onClick={logout}>Logout</Nav.Link>
