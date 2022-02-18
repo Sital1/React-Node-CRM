@@ -5,18 +5,19 @@ import tickets from "../../assets/data/dummy-tickets.json";
 import MessageHistory from "../../components/message-history/MessageHistory";
 import UpdateTicket from "../../components/update-ticket/UpdateTicket";
 import { useParams } from "react-router-dom";
-
-
-
+import { useSelector } from "react-redux";
 
 const Ticket = () => {
   const { id } = useParams()
   const [message, setMessage] = useState("");
   const [ticket, setTicket] = useState("");
+  const {tickets} = useSelector(state=> state.tickets)
+
+  console.log(tickets)
 
   useEffect(() => {
     for(let ticket of tickets){
-      if (ticket.id == id){
+      if (ticket._id == id){
         setTicket(ticket);
         break;
       }
@@ -42,7 +43,7 @@ const Ticket = () => {
       <Row>
         <Col>
           <div className="subject">Subject: {ticket.subject}</div>
-          <div className="date">Issued Date: {ticket.createdAt}</div>
+          <div className="date">Issued Date: {ticket.openAt}</div>
           <div className="status">Detail: {ticket.status}</div>
         </Col>
         <Col>

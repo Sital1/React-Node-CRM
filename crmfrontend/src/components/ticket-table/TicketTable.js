@@ -2,8 +2,19 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const TicketTable = ({ tickets }) => {
+
+const TicketTable = ({  }) => {
+
+
+  const {searchTicketList, isLoading, error} = useSelector(state=>state.tickets)
+
+
+  if(isLoading) return <h3>Loading ...</h3>
+  if(error) return <h3>{error}</h3>
+
+
   return (
     <Table striped bordered hover>
       <thead>
@@ -16,15 +27,15 @@ const TicketTable = ({ tickets }) => {
       </thead>
 
       <tbody>
-        {tickets.length ? (
-          tickets.map((row) => {
+        {searchTicketList.length ? (
+          searchTicketList.map((row) => {
             return (
-              <tr key={row.id}>
-                <td>{row.id}</td>
+              <tr key={row._id}>
+                <td>{row._id}</td>
                 <td>
                   <Link
                     className="text-decoration-none"
-                    to={`/ticket/${row.id}`}
+                    to={`/ticket/${row._id}`}
                   >
                     {row.subject}
                   </Link>
@@ -48,6 +59,3 @@ const TicketTable = ({ tickets }) => {
 
 export default TicketTable;
 
-TicketTable.propTypes = {
-  tickets: PropTypes.array.isRequired,
-};

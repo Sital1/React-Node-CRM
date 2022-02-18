@@ -5,7 +5,6 @@ import Entrypage from "./pages/entry/Entrypage";
 import AddTicket from "./pages/new-ticket/AddTicket";
 import TicketList from "./pages/ticket-listing/TicketList";
 import Ticket from "./pages/ticket/Ticket";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 
